@@ -1,64 +1,67 @@
-[color]
-	ui = true
-[user]
-	name = EmiliaPaz
-	email = emipazojeda@gmail.com
 [alias]
-        co = checkout
-        br = branch
-        bs = map-branches
-        ci = commit
-        st = status
-        ls = log --oneline -10
-        ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
-        
-        # Diff between current and previous commit
-        diffp = diff HEAD^ HEAD
-        
-        # List all the aliases
-        aliases = "!git config -l | grep alias | cut -c 7-"
+	aliases = "!git config -l | grep alias | cut -c 7-" # List all the aliases
+	am = commit --amend
+	br = branch
+	bs = map-branches
+	ci = commit
+	co = checkout
+	diffp = diff HEAD^ HEAD # Diff between current and previous commit
+	ls = log --oneline -10
+	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+	st = status
 
-        # Delete given branch.
-        # Usage: git db <branch_name>
-        db = "!f() { git branch -D $1; }; f"
+	### Aliases with parameters
 
-        # Freeze current branch and change its name to freeze-<branch_name>.
-        frz = "!f() { git freeze; git branch --show-current | xargs -I{} git branch -m {} freeze-{}; }; f"
+	# Add files with format
+	# Usage: git addf <file_path>
+	addf = "!f() { git cl format ; git add $1; };f";
 
-        # Thaw current branch and change its name to <branch_name>.
-        unfrz = "!f() { git thaw; git branch --show-current | sed 's/freeze-//' | xargs -I{} git branch -m {}; }; f"
+	# Show the change id of the given branch.
+	# Usage: cid <branch_name>
+	cid = "!f() { git show $1 | grep 'Change-Id'; }; f"
 
-        # New branch with origin/main as upstream.
-        # Usage: nb <branch_name>
-        nb = "!f() { git new-branch $1; }; f"
+	# Delete given branch.
+	# Usage: git db <branch_name>
+	db = "!f() { git branch -D $1; }; f"
 
-        # New branch with current branch as upstream.
-        # Usage: nbu <branch_name>
-        nbu = "!f() { git new-branch --upstream_current $1; }; f"
+	# Freeze current branch and change its name to freeze-<branch_name>.
+	frz = "!f() { git freeze; git branch --show-current | xargs -I{} git branch -m {} freeze-{}; }; f"
 
-        # New branch with origin/main as upstream and pointing to a Gerrit issue.
-        # Usage: nbcl <branch_name> <cl_number>
-        nbcl = "!f() { git new-branch $1; git cl issue $2; }; f"
+	# Thaw current branch and change its name to <branch_name>.
+	unfrz = "!f() { git thaw; git branch --show-current | sed 's/freeze-//' | xargs -I{} git branch -m {}; }; f"
 
-        # Show the change id of the given branch.
-        # Usage: cid <branch_name>
-        cid = "!f() { git show $1 | grep 'Change-Id'; }; f"
+	# New branch with origin/main as upstream.
+	# Usage: nb <branch_name>
+	nb = "!f() { git new-branch $1; }; f"
 
-        # Change the upstream of branch.
-        # Usage: upto <branch_name> <upstream_branch>
-        upto = "!f() { git branch $1 --set-upstream-to $2; }; f"
+	# New branch with current branch as upstream.
+	# Usage: nbu <branch_name>
+	nbu = "!f() { git new-branch --upstream_current $1; }; f"
 
-        # Rename branch.
-        # Usage: git rnb <old_name> <new_name>
-        rnb = "!f() { git branch -m $1 $2; }; f";
+	# New branch with origin/main as upstream and pointing to a Gerrit issue.
+	# Usage: nbcl <branch_name> <cl_number>
+	nbcl = "!f() { git new-branch $1; git cl issue $2; }; f"
 
-        # Unstage files
-        # Usage: git unstg <file_path>
-        unstg ="!f() { git reset -- $1; }; f"; 
+	# Rename branch.
+	# Usage: git rnb <old_name> <new_name>
+	rnb = "!f() { git branch -m $1 $2; }; f";
 
-        # Add files with format
-        # Usage: git addf <file_path>
-        addf = "!f() { git cl format ; git add $1; };f"; 
-        
-        
+	# Unstage files
+	# Usage: git unstg <file_path>
+	unstg ="!f() { git reset -- $1; }; f";
+
+	# Change the upstream of branch.
+	# Usage: upto <branch_name> <upstream_branch>
+	upto = "!f() { git branch $1 --set-upstream-to $2; }; f"
+
+
+	### Chromium specific
+	upl = cl upload
+	upl-e = cl upload --bypass-hooks
+	cl-count = log --author=emiliapaz --pretty=oneline | wc -
+
+	# Add files with format
+	# Usage: git addf <file_path>
+	addf = "!f() { git cl format ; git add $1; };f";
+
 
