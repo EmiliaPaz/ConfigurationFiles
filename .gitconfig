@@ -8,13 +8,10 @@
 	diffp = diff HEAD^ HEAD # Diff between current and previous commit
 	ls = log --oneline -10
 	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+	rc = rebase --continue
 	st = status
 
 	### Aliases with parameters
-
-	# Add files with format
-	# Usage: git addf <file_path>
-	addf = "!f() { git cl format ; git add $1; };f";
 
 	# Show the change id of the given branch.
 	# Usage: cid <branch_name>
@@ -45,6 +42,10 @@
 	# Rename branch.
 	# Usage: git rnb <old_name> <new_name>
 	rnb = "!f() { git branch -m $1 $2; }; f";
+	
+	# Revert to commit
+        # Usage: git rv <previous_commit>
+        rv = "!f() { git revert --no-commit $1..HEAD; }; f";
 
 	# Unstage files
 	# Usage: git unstg <file_path>
@@ -64,4 +65,15 @@
 	# Usage: git addf <file_path>
 	addf = "!f() { git cl format ; git add $1; };f";
 
+	### Chromium specific
+        upl = cl upload
+        upl-e = cl upload --bypass-hooks
+        cl-count = log --author=emiliapaz --pretty=oneline | wc -
 
+        # Add files with format
+        # Usage: git addf <file_path>
+        addf = "!f() { git cl format ; git add $1; };f";
+	
+	# Add files with format, and ammend current commit
+        # Usage: git amnf <file_path>
+        amnf = "!f() { git addf $1 ; git amn; };f";
