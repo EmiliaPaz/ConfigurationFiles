@@ -51,7 +51,7 @@ alias goma='goma_ctl ensure_start'
 alias run='out/Default/chrome'
 alias run='out/Default/chrome --enable-features=ExtensionsMenuAccessControl'
 alias ext='cd ~/Extensions'
-alias snippets='cd ~/Crx/ChromiumTools && python gerrit-cls.py
+alias snippets='cd ~/Crx/ChromiumTools && python gerrit-cls.py'
 
 # Dev workflow
 
