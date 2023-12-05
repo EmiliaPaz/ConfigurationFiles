@@ -1,0 +1,13 @@
+// Global user snippets for vscode
+{
+	"Cr_Copyright": {
+		"prefix": "cr_copyright",
+		"body": [
+		  "// Copyright ${CURRENT_YEAR} The Chromium Authors",
+		  "// Use of this source code is governed by a BSD-style license that can be",
+		  "// found in the LICENSE file.",
+		  "$1"
+		],
+		"description": "Copyright header for Chromium files"
+  }
+}
