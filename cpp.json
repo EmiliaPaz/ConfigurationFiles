@@ -1,0 +1,59 @@
+// User snippets for VSCode - cpp
+
+{
+	"Chrome Header": {
+    "prefix": "cpp header",
+    "body": [
+      "// Copyright ${CURRENT_YEAR} The Chromium Authors",
+      "// Use of this source code is governed by a BSD-style license that can be",
+      "// found in the LICENSE file.",
+      "${0:",
+      "#ifndef ${TM_FILEPATH/(^\\/.*\\/src\\/)|([^a-zA-Z0-9])|([a-zA-Z0-9])/${2:+_}${3:/upcase}/g}_",
+      "#define ${TM_FILEPATH/(^\\/.*\\/src\\/)|([^a-zA-Z0-9])|([a-zA-Z0-9])/${2:+_}${3:/upcase}/g}_",
+      "",
+      "#endif  // ${TM_FILEPATH/(^\\/.*\\/src\\/)|([^a-zA-Z0-9])|([a-zA-Z0-9])/${2:+_}${3:/upcase}/g}_}",
+    ]
+  },
+
+	"Constructors": {
+		"prefix": "constructors that disallow copy and assign",
+		"body": [
+			"Foo() = default;",
+			"Foo(const Foo&) = delete;",
+			"const Foo& operator=(const Foo&) = delete;",
+			"~Foo() override = default;",
+		],
+		"description": "Creates the constructor, copy constructor, operator overload and destructor. After inserting snippet, replace every 'Foo' with 'ClassName'"
+	},
+
+	"Include": {
+		"prefix": "include tag",
+		"body": [
+			"#include \"$1\""
+		],
+		"description": "Insert the include tag to be used at the beginning of a cpp file"
+	},
+
+	"Log": {
+    "prefix": "log",
+    "body": "LOG(INFO) << \"${1:message}\";",
+    "description": "Chrome Log output to console"
+  },
+
+	"Log with stacktrace": {
+		"prefix": "log st",
+		"body" : [
+			"LOG(INFO) << \"$1\\n\" << base::debug::StackTrace();"
+		],
+		"description": "Logs the strack trace"
+	},
+
+	"test mult run": {
+		"prefix": "runs a test multiple times",
+		"body": [
+			"class GrantFlakyApiTest : public Test, public testing::WithParamInterface<int> {};",
+			"INSTANTIATE_TEST_SUITE_P(AAAA, GrantFlakyApiTest, testing::Range(0, 1000));"
+		],
+		"description": "Creates a class, which inherits from test class, that will run it's tests 1000 times."
+	}
+}
