@@ -65,16 +65,17 @@
 	cl-count = log --author=emiliapaz --pretty=oneline | wc -
 
     # Add files with format
-    # Usage: git addf <file_path>
+    # Usage: git adf <file_path>
     adf = "!f() { git cl format ; git add $1; };f";
 
     # Add files on chrome/ with format
-    # Usage: git addf <file_path>
+    # Usage: git adc
     adc = "!f() { git adf chrome/; };f";
 
     # Add files with format, and amnd current commit
     # Usage: git amnf <file_path>
-    amf = "!f() { git adf $1 ; git amn; };f";	
+    amf = "!f() { git adf $1 ; git amn; };f";
 
 	# Add files on chrome/, and amend current commit
-    amc = "!f() { git addf chrome/ ; git amn; };f";
+    # Usage: git amc
+    amc = "!f() { git adc ; git amn; };f";
