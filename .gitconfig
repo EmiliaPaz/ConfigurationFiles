@@ -44,8 +44,8 @@
 	rnb = "!f() { git branch -m $1 $2; }; f";
 	
 	# Revert to commit
-        # Usage: git rv <previous_commit>
-        rv = "!f() { git revert --no-commit $1..HEAD; }; f";
+    # Usage: git rv <previous_commit>
+    rv = "!f() { git revert --no-commit $1..HEAD; }; f";
 
 	# Unstage files
 	# Usage: git unstg <file_path>
@@ -55,25 +55,26 @@
 	# Usage: upto <branch_name> <upstream_branch>
 	upto = "!f() { git branch $1 --set-upstream-to $2; }; f"
 
-
 	### Chromium specific
+	# Upload CLs
 	upl = cl upload
 	upl-e = cl upload --bypass-hooks
+    ut = "!f() { git cl upload ; git cl try; };f";
+
+	# CL stats
 	cl-count = log --author=emiliapaz --pretty=oneline | wc -
 
-	# Add files with format
-	# Usage: git addf <file_path>
-	addf = "!f() { git cl format ; git add $1; };f";
+    # Add files with format
+    # Usage: git addf <file_path>
+    adf = "!f() { git cl format ; git add $1; };f";
 
-	### Chromium specific
-        upl = cl upload
-        upl-e = cl upload --bypass-hooks
-        cl-count = log --author=emiliapaz --pretty=oneline | wc -
+    # Add files on chrome/ with format
+    # Usage: git addf <file_path>
+    adc = "!f() { git adf chrome/; };f";
 
-        # Add files with format
-        # Usage: git addf <file_path>
-        addf = "!f() { git cl format ; git add $1; };f";
-	
-	# Add files with format, and ammend current commit
-        # Usage: git amnf <file_path>
-        amnf = "!f() { git addf $1 ; git amn; };f";
+    # Add files with format, and amnd current commit
+    # Usage: git amnf <file_path>
+    amf = "!f() { git adf $1 ; git amn; };f";	
+
+	# Add files on chrome/, and amend current commit
+    amc = "!f() { git addf chrome/ ; git amn; };f";
