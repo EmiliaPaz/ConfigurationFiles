@@ -15,7 +15,12 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 ### Main dev
+# Python
 alias python='python3'
+alias python='python3'
+alias venv-n='python -m venv venv'
+alias venv-a='source venv/bin/activate'
+
 
 ### Aliases
 # Common commands
@@ -26,6 +31,7 @@ alias ..2='cd ../ ..'
 alias ..3='cd ../../..'
 alias ls='ls -GFh'
 alias g='git'
+alias limit='ulimit -n 50000' # when too many files are open
 
 # Shortcuts
 alias zshrc='vim ~/.zshrc'
