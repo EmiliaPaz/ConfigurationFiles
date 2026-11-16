@@ -1,26 +1,22 @@
 ###############################################################################
-# Personal configuration
+# Shell tools
 ###############################################################################
 
-###  Plugins
+# zsh suggestions
 source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-# Enables fzf
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
 
-### Themes
-# p10K
-source ~/powerlevel10k/powerlevel10k.zsh-theme
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# Starship
+eval "$(starship init zsh)"
 
-### Main dev
-# Python
-alias python='python3'
-alias python='python3'
-alias venv-n='python -m venv venv'
-alias venv-a='source venv/bin/activate'
+# fzf
+source <(fzf --zsh)
 
+# Where to look for executable commands
+export PATH="$HOME/.local/bin:$PATH"
+
+###############################################################################
+# Custom
+###############################################################################
 
 ### Aliases
 # Common commands
@@ -32,6 +28,17 @@ alias ..3='cd ../../..'
 alias ls='ls -GFh'
 alias g='git'
 alias limit='ulimit -n 50000' # when too many files are open
+
+# Tools
+alias ls="eza --icons"
+alias cat="bat"
+
+# Python
+alias python='python3'
+alias python='python3'
+alias venv-n='python -m venv venv'
+alias venv-a='source venv/bin/activate'
+alias pip=pip3
 
 # Shortcuts
 alias zshrc='vim ~/.zshrc'
